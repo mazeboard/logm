@@ -1,0 +1,4 @@
+gcloud iam service-accounts add-iam-policy-binding \
+  logm-carrefour-com@logm-fr1676-frb03577-dev.iam.gserviceaccount.com \
+  --member=user:taoufik_dachraoui \
+  --role=roles/iam.serviceAccountUser

@@ -1,4 +1,4 @@
 version: "3"
 services:
   fetch-es:
-      image: eu.gcr.io/logm-fr1676-frb03577-dev/fetch-es:example
+      image: eu.gcr.io/logm-fr1676-frb03577-dev/fetch-es:latest

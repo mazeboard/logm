@@ -1,4 +1,4 @@
-FROM eu.gcr.io/logm-fr1676-frb03577-dev/spark-py:my-tag
+FROM eu.gcr.io/logm-fr1676-frb03577-dev/spark-py:latest
 
 COPY wordcount.py /wordcount.py
 COPY inputfile.txt /inputfile.txt
@@ -9,6 +9,8 @@ CMD /opt/spark/bin/spark-submit --master k8s://https://35.246.181.195 \
        --name wordcount \
        --conf spark.executor.instances=2 \
        --conf "spark.app.id=wordcount" \
+       --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark
+       --conf spark.kubernetes.container.image=eu.gcr.io/logm-fr1676-frb03577-dev/spark-py:latest \
        local:///wordcount.py local:///inputfile.txt 
 
 #CMD bin/spark-submit \

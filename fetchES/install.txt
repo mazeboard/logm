@@ -1,11 +1,58 @@
-1.
+https://spark.apache.org/docs/latest/running-on-kubernetes.html#rbac
 
-<repo> = eu.gcr.io/logm-fr1676-frb03577-dev
+1. create kubernetes cluster
+$ gcloud container clusters create fetchcluster --zone europe-west3-b
+$ kubectl create serviceaccount spark 
+$ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
 
-$ ./bin/docker-image-tool.sh -r <repo> -t my-tag build
-$ ./bin/docker-image-tool.sh -r <repo> -t my-tag push
+2. create docker images
 
-2. docker build -t <repo>/fetch-es:example .
-3. docker push <repo>/fetch-es:example
-4. ./kompose up 
+2.1 spark images
+$ cd spark-2.4.3-bin-hadoop2.7
+$ ./bin/docker-image-tool.sh -r eu.gcr.io/logm-fr1676-frb03577-dev -t my-tag build
+$ ./bin/docker-image-tool.sh -r eu.gcr.io/logm-fr1676-frb03577-dev -t my-tag push
 
+2.2 app image
+$ cd logm/fetchES
+$ docker build -t eu.gcr.io/logm-fr1676-frb03577-dev/fetch-es .
+$ docker push eu.gcr.io/logm-fr1676-frb03577-dev/fetch-es
+
+
+2. run app image
+
+#$ ./kompose up 
+
+OR
+
+doc: https://spark.apache.org/docs/latest/running-on-kubernetes.html#rbac
+
+
+
+$ kubectl run fetch --image eu.gcr.io/logm-fr1676-frb03577-dev/fetch-es:latest
+$ kubectl get pods
+$ kubectl logs fetch-7cb9bfbd47-52p5x
+
+taoufik_dachraoui@cloudshell:~/logm/fetchES (logm-fr1676-frb03577-dev)$ kubectl logs fetch-7cb9bfbd47-52p5x
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/ash
+Non-spark-on-k8s command provided, proceeding in pass-through mode...
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/ash ']'
++ SPARK_K8S_CMD=/bin/sh
++ case "$SPARK_K8S_CMD" in
++ echo 'Non-spark-on-k8s command provided, proceeding in pass-through mode...'
++ exec /sbin/tini -s -- /bin/sh -c '/opt/spark/bin/spark-submit --master k8s://https://35.246.181.195        --deploy-mode cluster        --executor-memory 1g        --name wordcount        --conf spark.executor.instances=2        --conf "spark.app.id=wordcount"        --conf spark.kubernetes.container.image=eu.gcr.io/logm-fr1676-frb03577-dev/spark-py:latest        local:///wordcount.py local:///inputfile.txt'
+log4j:WARN No appenders could be found for logger (io.fabric8.kubernetes.client.Config).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Exception in thread "main" io.fabric8.kubernetes.client.KubernetesClientException: Operation: [create]  for kind: [Pod]  with name: [null]  in namespace: [default]  failed.
+        at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:64)
+        at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:72)
+        at io.fabric8.kubernetes.client.dsl.base.BaseOperation.create(BaseOperation.java:364)
+  
