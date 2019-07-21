@@ -1,0 +1,11 @@
+1.
+
+<repo> = eu.gcr.io/logm-fr1676-frb03577-dev
+
+$ ./bin/docker-image-tool.sh -r <repo> -t my-tag build
+$ ./bin/docker-image-tool.sh -r <repo> -t my-tag push
+
+2. docker build -t <repo>/fetch-es:example .
+3. docker push <repo>/fetch-es:example
+4. ./kompose up 
+
