@@ -1,0 +1,9 @@
+ 1004  mkdir test
+ 1005  cd test
+ 1015  docker build -t eu.gcr.io/logm-fr1676-frb03577-dev/test:latest .
+ 1017  kubectl run fetches --image eu.gcr.io/logm-fr1676-frb03577-dev/test:latest 
+ 1032  docker push eu.gcr.io/logm-fr1676-frb03577-dev/test:latest
+ 1050  kubectl run test --image eu.gcr.io/logm-fr1676-frb03577-dev/test:latest 
+ 1056  kubectl scale deployment test --replicas 2
+ 1058  kubectl logs test-84f8dc456d-7vw6f
+ 1059  kubectl logs test-test-84f8dc456d-2wcxs
