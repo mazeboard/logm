@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FetchSQL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="w3.css">
+	<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="src-noconflict/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<script src="jquery.min.js"></script>
+<body>
+  <div class="w3-container" style="margin:10px 10px;"><IMG SRC="http://www.carrefour.com/sites/all/themes/carrefourcom_v2/img_v2/logo.png" ALT="Carrefour" WIDTH=60 HEIGHT=40></div>
+  <div class="w3-row header">
+     <div class="w3-show-inline-block w3-col side-header"><h1 class=label>Queries</h1></div>
+     <div class="middle-header w3-show-inline-block w3-col">
+	     <h1 id=fetch-sql class="label w3-show-inline-block paused">fetchSQL</h1>
+	     <!-- <div class="w3-show-inline-block w3-right">
+	        <input class="w3-show-inline-block w3-left" type=checkbox value=refresh>refresh</input>
+	        <input class="w3-show-inline-block w3-right" id=interval type=text value=30></input>
+	     </div> -->
+     </div>
+     <div class="w3-show-inline-block w3-col side-header"><h1 class=label>Dashboards</h1></div>
+  </div>
+  <div class="w3-row main">
+	  <div class="w3-col side-left" style="height:480px">
+         <div class="w3-row selectable-name">first</div>
+         <div class="w3-row selectable-name">second</div>
+         <div class="w3-row selectable-name">third</div>
+	  </div>
+	  <div class="editor middle w3-col">
+		  <div id=queryeditor>
+		      <div id=editor class="w3-row ace-eclipse" style="height:200px"></div>
+		      <div id=result class="w3-row" style="height:270px"></div>
+		  </div>
+		  <div id=dashboardeditor style="height:480px">
+		  </div>
+	  </div>
+	  <div class="w3-col side-right" style="height:480px">
+         <div class="w3-row selectable-name">first</div>
+         <div class="w3-row selectable-name">second</div>
+         <div class="w3-row selectable-name">third</div>
+	  </div>
+  </div>
+  <script src="channel.js"></script>
+  <script src="websocket.js"></script>
+</body>
+</html>
