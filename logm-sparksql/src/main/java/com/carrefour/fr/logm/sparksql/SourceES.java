@@ -36,7 +36,7 @@ public class SourceES extends Source {
 	Map<String, JSONObject> indexes = new HashMap<String, JSONObject>();
 	
 	public SourceES(Config cluster) {
-		super(cluster);
+		super(cluster, "elasticsearch");
 	    httpClient = new HttpClient(); // new HttpClient(sslContextFactory);
 		httpClient.setFollowRedirects(false);
 		httpClient.setResponseBufferSize(16*4194304);
@@ -51,6 +51,7 @@ public class SourceES extends Source {
 	
 	@Override
 	public void config(Config es) {
+		super.config(es);
 		ES_NODES_CLIENT_ONLY = es.getString("es_nodes_client_only");
 		ES_NODES_WAN_ONLY = es.getString("es_nodes_wan_only");
 		ES_NODES_DISCOVERY = es.getString("es_nodes_discovery");

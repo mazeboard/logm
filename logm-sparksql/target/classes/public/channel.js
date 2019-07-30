@@ -16,7 +16,7 @@ function channel(path) {
     			ch.socket = new WebSocket("ws://" + location.hostname + ":" + location.port + path);
     			callback(null);
     		} catch (error) {
-    			setTimeout(wsConnect, callback, error, retries-1, 1000);
+    			setTimeout(wsConnect, 1000, callback, error, retries-1);
     		}
     	}
     }

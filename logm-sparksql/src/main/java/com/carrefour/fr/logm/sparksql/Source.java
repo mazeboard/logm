@@ -19,17 +19,37 @@ import org.json.JSONObject;
 import com.typesafe.config.Config;
 
 abstract class Source implements AutoCloseable {
+    String sourceType;
 	String name;
 	String hostname;
 	int port;
+	Config sourceConfig;
 	
-	public Source(Config cluster) {
+	public Source(Config cluster, String sourceType) {
+		this.sourceType = sourceType;
 		this.name = cluster.getString("name");
 		this.hostname = cluster.getString("hostname");
 		this.port = cluster.getInt("port");
 	}
 	
-	public abstract void config(Config conf);
+	public void config(Config conf) {
+		this.sourceConfig = conf;
+	};
+	public Config getConfig(Config conf) {
+		return sourceConfig;
+	};
+	public String getSourceType() {
+		return sourceType;
+	}
+	public String getHostname() {
+		return hostname;
+	}
+	public int getPort() {
+		return port;
+	}
+	public String getName() {
+		return name;
+	}
 	public abstract String toFilter(String query) throws Exception;
     public abstract void updateTables() throws Exception;
 	public abstract List<String> getTables();

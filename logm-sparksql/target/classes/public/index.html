@@ -10,39 +10,73 @@
 </head>
 <script src="jquery.min.js"></script>
 <body>
-  <div class="w3-container" style="margin:10px 10px;"><IMG SRC="http://www.carrefour.com/sites/all/themes/carrefourcom_v2/img_v2/logo.png" ALT="Carrefour" WIDTH=60 HEIGHT=40></div>
-  <div class="w3-row header">
-     <div class="w3-show-inline-block w3-col side-header"><h1 class=label>Queries</h1></div>
-     <div class="middle-header w3-show-inline-block w3-col">
-	     <h1 id=fetch-sql class="label w3-show-inline-block paused">fetchSQL</h1>
-	     <!-- <div class="w3-show-inline-block w3-right">
-	        <input class="w3-show-inline-block w3-left" type=checkbox value=refresh>refresh</input>
-	        <input class="w3-show-inline-block w3-right" id=interval type=text value=30></input>
-	     </div> -->
+  <div class="header">
+    <IMG class="w3-image w3-left"
+           SRC="http://www.carrefour.com/sites/all/themes/carrefourcom_v2/img_v2/logo.png" 
+           ALT="Carrefour"
+           style="height:40px">
+    <div class="w3-right">
+      <div class="w3-show-inline-block">
+          <a class="selectable-name" href="#">Project</a>
+      </div>
+      <div class="w3-show-inline-block w3-dropdown-hover">
+          <input id=projectname class="fetch-gray" type=text size=15></input>
+          <div class="w3-dropdown-content w3-bar-block w3-border">
+            <a id=save-project href="#" class="w3-bar-item menu-item">Save</a>
+            <a id=delete-project href="#" class="w3-bar-item menu-item">Delete</a>
+            <div id=projects class="w3-bar-block w3-border w3-card-4">
+              <a id=load-project href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">foo</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">bar</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">aaa</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">bbb</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">ccc</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">ddd</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">eee</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">fff</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">ggg</a>
+              <a id=save-project href="#" class="w3-bar-item menu-item">hhh</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="w3-row fetch-header">
+     <div class="w3-show-inline-block w3-col fetch-side-header w3-dropdown-hover">
+          <h1 class="label fetch-blue">Queries</h1>
+		  <div class="w3-dropdown-content w3-bar-block w3-border">
+		    <a id=add-query href="#" class="w3-bar-item menu-item">Add</a>
+		    <a id=delete-query href="#" class="w3-bar-item menu-item">Delete</a>
+		  </div>
      </div>
-     <div class="w3-show-inline-block w3-col side-header"><h1 class=label>Dashboards</h1></div>
+     <div class="fetch-middle-header w3-show-inline-block w3-col">
+	     <h1 id=fetch-sql class="label fetch-red w3-show-inline-block paused">fetchSQL</h1>
+     </div>
+     <div class="w3-show-inline-block w3-col fetch-side-header w3-dropdown-hover">
+          <h1 class="label fetch-blue">Dashboards</h1>
+		  <div class="w3-dropdown-content w3-bar-block w3-border">
+		    <a id=add-dashboard href="#" class="w3-bar-item menu-item">Add</a>
+		    <a id=delete-dashboard href="#" class="w3-bar-item menu-item">Delete</a>
+		  </div>
+     </div>
   </div>
   <div class="w3-row main">
-	  <div class="w3-col side-left" style="height:480px">
-         <div class="w3-row selectable-name">first</div>
-         <div class="w3-row selectable-name">second</div>
-         <div class="w3-row selectable-name">third</div>
+	  <div id=queries class="w3-col fetch-side-left" style="height:480px">
 	  </div>
-	  <div class="editor middle w3-col">
+	  <div class="editor fetch-middle w3-col">
 		  <div id=queryeditor>
 		      <div id=editor class="w3-row ace-eclipse" style="height:200px"></div>
 		      <div id=result class="w3-row" style="height:270px"></div>
 		  </div>
-		  <div id=dashboardeditor style="height:480px">
+		  <div id=dashboardeditor style="height:480px">dashboard
+		  </div>
+		  <div id=dummy style="height:480px">no element is selected
 		  </div>
 	  </div>
-	  <div class="w3-col side-right" style="height:480px">
-         <div class="w3-row selectable-name">first</div>
-         <div class="w3-row selectable-name">second</div>
-         <div class="w3-row selectable-name">third</div>
+	  <div id=dashboards class="w3-col fetch-side-right" style="height:480px">
 	  </div>
   </div>
   <script src="channel.js"></script>
+  <script src="dashboard.js"></script>
   <script src="websocket.js"></script>
 </body>
 </html>
