@@ -34,7 +34,8 @@ function channel(path) {
 		                });
     	    	} catch (error) {
     	    		console.log(e.data);
-    	    		alert(error);
+					//alert(error);
+					console.log(error);
     	    	}
     	    };
 
@@ -56,7 +57,8 @@ function channel(path) {
     		}
 
     	} else {
-    		alert(JSON.stringify(error));
+			console.log(error);
+    		//alert(JSON.stringify(error));
     	}
     };
 

@@ -16,27 +16,47 @@
            ALT="Carrefour"
            style="height:40px">
     <div class="w3-right">
-      <div class="w3-show-inline-block">
-          <a class="selectable-name" href="#">Project</a>
-      </div>
-      <div class="w3-show-inline-block w3-dropdown-hover">
-          <input id=projectname class="fetch-gray" type=text size=15></input>
-          <div class="w3-dropdown-content w3-bar-block w3-border">
-            <a id=save-project href="#" class="w3-bar-item menu-item">Save</a>
-            <a id=delete-project href="#" class="w3-bar-item menu-item">Delete</a>
-            <div id=projects class="w3-bar-block w3-border w3-card-4">
-              <a id=load-project href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">foo</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">bar</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">aaa</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">bbb</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">ccc</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">ddd</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">eee</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">fff</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">ggg</a>
-              <a id=save-project href="#" class="w3-bar-item menu-item">hhh</a>
+      <div class="w3-left" style="padding:5px 10px;">
+        <div class="w3-show-inline-block">
+            <p class="domain-label">Domain</p>
+        </div>
+        <div class="w3-show-inline-block w3-dropdown-hover">
+            <input id=domainname class="fetch-gray" type=text size=15 setDomainName(this)></input>
+            <div id=domains class="w3-dropdown-content w3-bar-block w3-border">
+              <a href="#" class="w3-bar-item menu-item" onclick="loadDomain(this)">domain1</a>
+              <a href="#" class="w3-bar-item menu-item" onclick="loadDomain(this)">domain2</a>
             </div>
-          </div>
+        </div>
+      </div>
+      <div class="w3-right" style="padding:5px 10px;"> 
+        <div class="w3-show-inline-block">
+            <p class="project-label">Project</p>
+        </div>
+        <div class="w3-show-inline-block w3-dropdown-hover">
+            <input id=projectname class="fetch-gray" type=text size=15 onchange="setProjectName(this)"></input>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+              <a id=save-project href="#" class="w3-bar-item menu-item">Save</a>
+              <a id=delete-project href="#" class="w3-bar-item menu-item">Delete</a>
+              <div class="projects w3-bar-block w3-card-4">
+                  <div id=localprojects class="w3-bar-block w3-border w3-card-4">
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project0</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project1</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project2</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project2</a>
+                  </div>
+                  <div id=savedprojects class="w3-bar-block w3-card-4">
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project3</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project4</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project5</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project5</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project5</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project5</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project5</a>
+                      <a href="#" class="w3-bar-item menu-item" onclick="loadProject(this)">project5</a>
+                  </div>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
@@ -77,6 +97,6 @@
   </div>
   <script src="channel.js"></script>
   <script src="dashboard.js"></script>
-  <script src="websocket.js"></script>
+  <script src="fetch.js"></script>
 </body>
 </html>

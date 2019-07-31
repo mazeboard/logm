@@ -40,7 +40,14 @@ class FetchWebsocket {
         app.ws("/fetch-sql", ws -> {
             ws.onConnect(ctx -> {
             	contexts.add(ctx);
+            	//TODO send domains
+            	
+            	// send projects
+            	projects.forEach((projectname, project) -> {
+            		ctx.send("{\"key\":\"project\",\"data\":"+ project.toString()+"}");
+            	});
             	if (spark!=null) {
+            		// send sources
 	                spark.sources.forEach((name, source) -> {
 	                	String tables = source.getTables().stream()
 	                			  .map(tablename -> "\""+tablename+"\"")
@@ -48,10 +55,6 @@ class FetchWebsocket {
 	                    ctx.send("{\"key\":\"source\",\"data\":{\"type\":\""+source.getSourceType()+"\"hostname\":\""+source.getHostname()+"\",\"port\":\""+source.getPort()+"\"name\":\""+name+"\",\"tables\":["+tables+"]}}");
 	                });
             	}
-            	// send projects
-            	projects.forEach((projectname, project) -> {
-            		ctx.send("{\"key\":\"project\",\"data\":"+ project.toString()+"}");
-            	});
             });
             
             ws.onClose(ctx -> {
@@ -70,13 +73,13 @@ class FetchWebsocket {
 		    		JSONObject msgJson = new JSONObject(ctx.message());
 	            	System.out.println("json message: "+msgJson.toString());
 	            	String key = msgJson.getString("key");
-	            	String data = msgJson.getString("data");
 	            	String sessionId = msgJson.getString("sessionId");
+	            	String data = msgJson.getString("data");
 		    		switch (key) {
 		    		case "project":
-		    			JSONObject x = new JSONObject(data);
-		    			String projectname = x.getString("projectname");
-		    			JSONObject project = x.getJSONObject("project");
+		    			JSONObject project = new JSONObject(data);
+		    			String projectname = project.getString("name");
+		    			String domainname = project.getString("domain");
 		    			projects.put(projectname,  project);
 		    			// broadcast project
 		    			// TODO many users may be modifying the same project

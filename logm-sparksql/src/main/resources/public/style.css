@@ -13,6 +13,9 @@ body {
 .selected {
   border: 2px solid #004d9f;
 }
+.not-saved {
+  border-left: 2px solid #e2180b;
+}
 .header {
   height:60px;
   text-decoration: none;
@@ -23,14 +26,14 @@ body {
 .editor {
   position: relative;
 }
-#projects::-webkit-scrollbar {
+.projects::-webkit-scrollbar {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
   appearance: none;
   width: 7px;
 }
-#projects::-webkit-scrollbar-thumb {
+.projects::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
@@ -39,10 +42,11 @@ body {
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
   }
 
-#projects {
+.projects {
   height: 150px;
   overflow: scroll;
 }
+
 #queryeditor {
   position: absolute;
   left: 0px;
@@ -202,6 +206,15 @@ body {
   -o-box-shadow: 0px 5px 15px -5px rgba(0,0,0,0.57);
   box-shadow: 0px 5px 15px -5px rgba(0,0,0,0.57);
    transition: all 0.4s ease 0s;
+}
+
+#localprojects .menu-item {
+  background-color: #e2180b;
+  color: white;
+}
+#savedprojects .menu-item {
+  background-color: #004d9f;
+  color: white;
 }
 
 .menu-item {

@@ -13,6 +13,9 @@ body {
 .selected {
   border: 2px solid #004d9f;
 }
+.not-saved {
+  border-left: 2px solid #e2180b;
+}
 .header {
   height:60px;
   text-decoration: none;
