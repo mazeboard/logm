@@ -19,7 +19,7 @@
     <java.version>1.8</java.version>
     <commons-lang3.version>3.9</commons-lang3.version>
     <j2html.version>1.4.0</j2html.version>
-    <log4j.version>2.12.0</log4j.version>
+    <log4j.version>2.13.3</log4j.version>
   </properties>
 
   <dependencies>
